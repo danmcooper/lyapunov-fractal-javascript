@@ -19,7 +19,7 @@
 
 
 	// get the dimensions of the image
-	var xDimension = 800, yDimension = 800, getSequence = "BBBBAAAA", getImgRange = 2.0, getImgOffset = 2.0;
+	var xDimension = 400, yDimension = 400, getSequence = "AB", getImgRange = 2.0, getImgOffset = 2.0;
 
 	Array.range = function (a, b, step) {
 	    var A = [], s = 'abcdefghijklmnopqrstuvwxyz';
@@ -105,10 +105,10 @@
 		var color;
 
 		if (isNeg === true) {
-			color = [parseInt(scaledExp*255), parseInt(scaledExp*255), 0];
+			color = [parseInt(scaledExp*255), parseInt(scaledExp*128), 0];
 		}
 		else {
-			color = [parseInt(scaledExp*255), 0, parseInt(scaledExp*255)];
+			color = [parseInt(scaledExp*512), 0, parseInt(scaledExp*256)];
 		}
 
 		var rgb = "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")";
@@ -120,14 +120,24 @@
 	var N = 200;
 	var range = Array.range(1,N,1);
 	debugger;
-	var theList = generateFract(pointList);
+	// var theList = generateFract(pointList);
+	// var ctx = createCanvas(xDimension, yDimension);
+	// theList.forEach(function(v, i, a) {
+	// 	var point = v[0];
+	// 	drawPoint(point[2], point[3], ctx, transForm(v[1]));
+	// });
 	var ctx = createCanvas(xDimension, yDimension);
-	theList.forEach(function(v, i, a) {
-		var point = v[0];
-		drawPoint(point[2], point[3], ctx, transForm(v[1]));
-	});
+	var i = 0;
+	var len = pointList.length;
+	var piecelen = 0;
 
-
-
+	var id = setInterval(function () {
+		for(piecelen += 5000; (i < piecelen) && (i < len); i++) {
+			var pointExp = computeExponent(pointList[i]);
+			var point = pointExp[0];
+			drawPoint(point[2], point[3], ctx, transForm(pointExp[1]));
+		};
+		if (i >= len) clearInterval(id);;
+	}, 1/100);
 
 })();
