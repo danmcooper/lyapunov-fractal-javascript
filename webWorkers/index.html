@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Lyapunov Fractals</title>
+		<style>
+		body {
+			margin: 20px;
+		}
+        #options {
+            float:left;
+            width:250px;
+        }
+        #canvasarea {
+            float:left;
+            margin-left: 20px;
+        }
+        input {
+        	display: block;
+        }             
+        </style>
+	</head>
+	<body>
+		<div id="options">
+			<label for="pattern">Repeating pattern of A and B (Example: ABBBAA)</label>
+			<input type="text" id="pattern" value="ABBA">
+			<label for="x">X</label>
+			<input type="text" id="x" value="400">
+			<label for="y">Y</label>
+			<input type="text" id="y" value="400">
+			<label for="iterations">Number of iterations for exponent (200 is fine)</label>
+			<input type="text" id="iterations" value="200">
+			<label for="workers">Number of workers</label>
+			<select id="workers">
+			  <option value="1">1</option>
+			  <option value="2">2</option>
+			  <option value="3">3</option>
+			  <option value="4" selected="selected">4</option>
+			  <option value="5">5</option>			  
+			  <option value="6">6</option>
+			  <option value="7">7</option>			  
+			  <option value="8">8</option>
+			  <option value="12">12</option>
+			  <option value="16">16</option>
+			  <option value="24">24</option>
+			  <option value="32">32</option>		  			  			  
+			</select>
+			<input type="button" id="go" value="Go!">												
+		</div>
+		<div id="canvasarea">
+			<div id="time"></div>
+			<canvas id="lyapunovCanvas"></canvas>
+		</div>		
+		<script src="drawing.js"></script>			
+		<script src="main.js"></script>	
+	</body>
+</html>
