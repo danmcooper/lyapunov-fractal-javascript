@@ -15,8 +15,10 @@ var LYAPUNOV = LYAPUNOV || {};
 		options.xDimension = parseInt(document.getElementById('x').value);
 		options.yDimension = parseInt(document.getElementById('y').value);
 		options.getSequence = document.getElementById('pattern').value;
-		options.getImgRange = 2.0;
-		options.getImgOffset = 2.0;
+		options.xStart = document.getElementById('xstart').value - 0;
+		options.xEnd = document.getElementById('xend').value - 0;
+		options.yStart = document.getElementById('ystart').value - 0;
+		options.yEnd = document.getElementById('yend').value - 0;		
 		options.N = parseInt(document.getElementById('iterations').value);
 		options.numberOfWorkers = parseInt(document.getElementById('workers').value);
 
@@ -24,7 +26,11 @@ var LYAPUNOV = LYAPUNOV || {};
 		   (options.yDimension > 0) &&
 		   (options.getSequence.length > 0) &&
 		   (options.N > 0) &&
-		   (options.numberOfWorkers > 0)) return options;
+		   (options.numberOfWorkers > 0) &&
+		   (options.xStart > 0) &&
+		   (options.xEnd > 0) &&
+		   (options.yStart > 0) &&	   
+   		   (options.yEnd > 0)) return options;
 		else
 			return false;
 	}

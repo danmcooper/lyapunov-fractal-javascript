@@ -32,21 +32,13 @@
 	this.addEventListener('message', messageHandler, false);
 
 	Array.range = function (a, b, step) {
-	    var A = [], s = 'abcdefghijklmnopqrstuvwxyz';
-	    if (typeof a === 'number') {
-	        A[0] = a;
-	        step = step || 1;
-	        while (a + step < b) {
-	            A[A.length] = a += step;
-	        }
-	    } else {
-	        if (a === a.toUpperCase()) {
-	            b = b.toUpperCase();
-	            s = s.toUpperCase();
-	        }
-	        s = s.substring(s.indexOf(a), s.indexOf(b) + 1);
-	        A = s.split('');
-	    }
+	    var A = [];
+
+        A[0] = a;
+        step = step || 1;
+        while (a + step < b) {
+            A[A.length] = a += step;
+        }
 
 	    return A;
 	};
@@ -65,16 +57,14 @@
 	};
 
 	var genPoint = function (n) {
-		var irange = getImgRange;
-		var offset = getImgOffset;
 		var unscaled = [n / xDimension, (n % yDimension), Math.floor(n / (xDimension)), (n % (yDimension))];
 		unscaled[0] = unscaled[0] / xDimension;
-		unscaled[0] = unscaled[0] * irange;
-		unscaled[0] = unscaled[0] + offset;
+		unscaled[0] = unscaled[0] * xRange;
+		unscaled[0] = unscaled[0] + xOffset;
 
 		unscaled[1] = unscaled[1] / yDimension;
-		unscaled[1] = unscaled[1] * irange;
-		unscaled[1] = unscaled[1] + offset;
+		unscaled[1] = unscaled[1] * yRange;
+		unscaled[1] = unscaled[1] + yOffset;
 
 		return [unscaled[0], unscaled[1], unscaled[2], unscaled[3]];
 	};
@@ -98,8 +88,10 @@
 		xDimension = options.xDimension;
 		yDimension = options.yDimension;
 		getSequence = options.getSequence;
-		getImgRange = options.getImgRange;
-		getImgOffset = options.getImgOffset;
+		xRange = options.xEnd - options.xStart;
+		xOffset = options.xStart;
+		yRange = options.yEnd - options.yStart;
+		yOffset = options.yStart;
 		N = options.N;
 		var start = (xDimension * yDimension * options.thisWorker)/options.numberOfWorkers;
 		var end = start + (xDimension * yDimension / options.numberOfWorkers);
