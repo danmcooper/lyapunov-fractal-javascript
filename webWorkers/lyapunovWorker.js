@@ -71,9 +71,9 @@
 
 	var computeExponent = function (p) {
 		var point = genPoint(p), x = 0.5, i, runningSum = 0.0;
-		for (i in rangeN) {
-			x = rFunc(point, rangeN[i] - 1) * x * (1.0 - x);
-			runningSum = runningSum + Math.log(Math.abs(rFunc(point, rangeN[i]) * (1.0 - 2.0*x)));
+		for (i =1; i < N; i++) {
+			x = rFunc(point, i - 1) * x * (1.0 - x);
+			runningSum = runningSum + Math.log(Math.abs(rFunc(point, i) * (1.0 - 2.0*x)));
 		}
 		runningSum = runningSum * (1.0/N);
 		//console.log(point + ", " + runningSum);
@@ -96,10 +96,7 @@
 		var start = (xDimension * yDimension * options.thisWorker)/options.numberOfWorkers;
 		var end = start + (xDimension * yDimension / options.numberOfWorkers);
 		var pointList = Array.range(start, end, 1);
-		rangeN = Array.range(1,N,1);
 
 		return generateFract(pointList);
 	};
-
-	var rangeN;
 }());

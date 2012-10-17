@@ -24,7 +24,7 @@ var LYAPUNOV = LYAPUNOV || {};
 
 		var rgb = "rgb(" + color[0] + "," + color[1] + "," + color[2] + ")";
 	
-		console.log(color[0] + "    " + color[1] + "     " + color[2]);
+		//console.log(color[0] + "    " + color[1] + "     " + color[2]);
 		return rgb;
 	};
 
